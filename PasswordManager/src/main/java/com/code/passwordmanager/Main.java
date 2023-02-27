@@ -16,7 +16,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         String css = this.getClass().getResource("css/Menu.css").toExternalForm();
         scene.getStylesheets().add(css);
-
         stage.setTitle("MyPasswordManager");
         stage.setScene(scene);
         stage.setResizable(false);

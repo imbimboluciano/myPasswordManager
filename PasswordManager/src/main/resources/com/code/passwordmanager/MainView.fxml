@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1009.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1009.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.code.passwordmanager.MenuController">
    <children>
       <AnchorPane layoutX="-5.0" prefHeight="786.0" prefWidth="217.0" style="-fx-background-radius: 4px; -fx-background-color: #f2f2f2;">
          <children>
@@ -14,12 +14,13 @@
                   <Image url="@images/Mypassword%20Manager.png" />
                </image>
             </ImageView>
-            <Button layoutX="49.0" layoutY="254.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Archivio" />
-            <Button layoutX="49.0" layoutY="306.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Generatore" />
+            <Button layoutX="49.0" layoutY="254.0" mnemonicParsing="false" onAction="#toRecordPane" prefHeight="31.0" prefWidth="120.0" text="Archivio" />
+            <Button layoutX="49.0" layoutY="306.0" mnemonicParsing="false" onAction="#toGeneratorPane" prefHeight="31.0" prefWidth="120.0" text="Generatore" />
             <Button layoutX="49.0" layoutY="356.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Impostazioni" />
             <Button id="quitBtn" layoutX="49.0" layoutY="741.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Esci" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="213.0" layoutY="-1.0" prefHeight="793.0" prefWidth="796.0" style="-fx-background-color: blue;" />
+      <AnchorPane fx:id="recordPane" layoutX="213.0" layoutY="-1.0" prefHeight="793.0" prefWidth="796.0" style="-fx-background-color: blue;" />
+      <AnchorPane fx:id="generatorPane" layoutX="213.0" prefHeight="793.0" prefWidth="796.0" style="-fx-background-color: grey;" />
    </children>
 </AnchorPane>
