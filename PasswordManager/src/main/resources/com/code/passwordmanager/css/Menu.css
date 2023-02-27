@@ -1,0 +1,29 @@
+
+.button{
+     -fx-background-color: #0066ff;
+     -fx-text-fill:  #FFFFFF;
+      -fx-font-size: 1.1em;
+      -fx-alignment: center;
+      -fx-effect: dropshadow(three-pass-box, #DDDDDD,5,0,0,6);
+      -fx-font-family: Arial, Helvetica, sans-serif;
+      -fx-font-weight: bold;
+ }
+ .button:hover{
+      -fx-cursor: hand;
+        -fx-background-color: #002699;
+
+  }
+
+  #quitBtn{
+         -fx-background-color: #FFFFFF;
+         -fx-text-fill:  #0066ff;
+          -fx-font-size: 1.1em;
+          -fx-alignment: center;
+          -fx-effect: dropshadow(three-pass-box, #DDDDDD,5,0,0,6);
+  }
+
+  #quitBtn:hover{
+      -fx-background-color: #0066ff;
+         -fx-text-fill:  #FFFFFF;
+  }
+
