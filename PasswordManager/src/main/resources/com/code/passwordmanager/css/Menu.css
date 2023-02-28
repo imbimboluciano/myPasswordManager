@@ -19,7 +19,7 @@
          -fx-text-fill:  #0066ff;
           -fx-font-size: 1.1em;
           -fx-alignment: center;
-          -fx-effect: dropshadow(three-pass-box, #DDDDDD,5,0,0,6);
+
   }
 
   #quitBtn:hover{
