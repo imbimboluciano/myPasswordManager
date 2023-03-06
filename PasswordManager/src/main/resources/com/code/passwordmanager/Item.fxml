@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.code.passwordmanager.ItemController">
+   <children>
+      <VBox alignment="CENTER" layoutX="63.0" layoutY="8.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #346efe; -fx-border-radius: 5px; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="logoItem" fitHeight="75.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@images/amazon_logo.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="215.0">
+               <children>
+                  <Label fx:id="nomeItem" text="Amazon" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="215.0">
+               <children>
+                  <Label text="Nome Utente">
+                     <HBox.margin>
+                        <Insets left="4.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="nomeUtenteItem" text="nome">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="17.0" prefWidth="215.0">
+               <children>
+                  <Label text="Password" />
+                  <Label fx:id="passwordItem" text="*******" />
+               </children>
+            </HBox>
+            <HBox prefHeight="20.0" prefWidth="215.0">
+               <children>
+                  <Label text="Url" />
+                  <Label fx:id="urlItem" text="https" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="215.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Modifica" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

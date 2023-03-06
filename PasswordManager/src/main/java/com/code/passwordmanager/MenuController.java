@@ -1,19 +1,39 @@
 package com.code.passwordmanager;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class MenuController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable {
+
     @FXML
-    private AnchorPane recordPane, generatorPane;
+    private BorderPane mainPane;
 
-    public void toRecordPane(){
-        recordPane.setVisible(true);
-        generatorPane.setVisible(false);
+    public void toArchivio(){
+         PageLoader pl = new PageLoader();
+         Pane view = pl.getPage("Archivio");
+         mainPane.setCenter(view);
     }
 
-    public void toGeneratorPane(){
-        recordPane.setVisible(false);
-        generatorPane.setVisible(true);
+    public void toGeneratore(){
+        PageLoader pl = new PageLoader();
+        Pane view = pl.getPage("Generatore");
+        mainPane.setCenter(view);
+    }
+
+    public void close(){
+        Platform.exit();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        toArchivio();
     }
 }
