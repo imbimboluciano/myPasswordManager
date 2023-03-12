@@ -12,10 +12,8 @@ import java.util.TimeZone;
  */
 public class DBManager {
 
-
-    public static final String JDBC_Driver_MySQL = "com.mysql.cj.jdbc.Driver";
-    public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/jdbc?user=luciano&password=passwordManager20&serverTimezone=" + TimeZone.getDefault().getID();
-
+    public static final String JBDC_Driver_MariaDB = "org.mariadb.jdbc.Driver";
+    public static final String JDBC_URL_MariaDB = "jdbc:mariadb://localhost:3306/passwordmanager?user=lucianoimbimbo&password=ProgettoBicocchi&serverTimezone=" + TimeZone.getDefault().getID();
     public static String JDBC_Driver = null;
     public static String JDBC_URL = null;
     static Connection connection;

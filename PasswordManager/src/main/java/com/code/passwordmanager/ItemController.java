@@ -34,5 +34,7 @@ public class ItemController {
         urlItem.setText(credential.getUrl());
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(credential.getLogo())));
         logoItem.setImage(image);
+        logoItem.setFitHeight(80);
+        logoItem.setFitWidth(200);
     }
 }

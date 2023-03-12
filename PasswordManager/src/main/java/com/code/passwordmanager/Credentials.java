@@ -49,4 +49,15 @@ public class Credentials {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public String toString() {
+        return "Credentials{" +
+                "nome='" + nome + '\'' +
+                ", nomeUtente='" + nomeUtente + '\'' +
+                ", password='" + password + '\'' +
+                ", logo='" + logo + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

@@ -5,27 +5,27 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.code.passwordmanager.ArchivioController">
    <children>
-      <TextField alignment="CENTER" layoutX="228.0" layoutY="14.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-radius: 10px;" text="Search" />
-      <Button layoutX="590.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Aggiungi Password +" />
+      <TextField fx:id="tfSearch" alignment="CENTER" layoutX="228.0" layoutY="14.0" onKeyTyped="#searchInDB" onMouseClicked="#initSearch" prefHeight="25.0" prefWidth="300.0" style="-fx-background-radius: 10px;" text="Search" />
+      <Button layoutX="590.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPassword" prefHeight="25.0" prefWidth="177.0" styleClass="navigationButton" stylesheets="@css/style.css" text="Aggiungi Password +" />
       <HBox alignment="CENTER" layoutX="1.0" layoutY="228.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="10.0">
          <children>
-            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="760.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
-               <content>
-                  <GridPane fx:id="grid" prefHeight="552.0" prefWidth="760.0" style="-fx-background-color: white;">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                  </GridPane>
-               </content>
+            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="760.0" stylesheets="@css/style.css" vbarPolicy="NEVER">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <content>
+                  <GridPane fx:id="grid" prefHeight="250.0" prefWidth="0.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
             </ScrollPane>
          </children>
       </HBox>

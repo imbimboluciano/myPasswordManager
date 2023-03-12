@@ -17,9 +17,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(pl.getPage("Main"));
 
-        String css = this.getClass().getResource("css/Menu.css").toExternalForm();
-        scene.getStylesheets().add(css);
-        stage.getIcons().add(new Image("C:/Users/lucia/IdeaProjects/MyNewPasswordManager/PasswordManager/src/main/resources/com/code/passwordmanager/images/icon.png"));
+        stage.getIcons().add(new Image("/com/code/passwordmanager/images/icon.png"));
         stage.setTitle("MyPasswordManager");
         stage.setScene(scene);
         stage.setResizable(false);

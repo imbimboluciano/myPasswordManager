@@ -1,0 +1,61 @@
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+.itemButton{
+    -fx-background-color: #346efe;
+    -fx-text-fill:  #FFFFFF;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center;
+    -fx-font-family: Arial, Helvetica, sans-serif;
+    -fx-font-weight: bold;
+}
+
+
+.navigationButton{
+     -fx-background-color: #346efe;
+     -fx-text-fill:  #FFFFFF;
+      -fx-font-size: 1.1em;
+      -fx-alignment: center;
+      -fx-effect: dropshadow(three-pass-box, #DDDDDD,5,0,0,6);
+      -fx-font-family: Arial, Helvetica, sans-serif;
+      -fx-font-weight: bold;
+ }
+ .navigationButton:hover{
+      -fx-cursor: hand;
+        -fx-background-color: #002699;
+
+  }
+
+  .quitBtn{
+         -fx-background-color: #FFFFFF;
+         -fx-text-fill:  #0066ff;
+          -fx-font-size: 1.1em;
+          -fx-alignment: center;
+          fx-font-family: Arial, Helvetica, sans-serif;
+          -fx-font-weight: bold;
+
+  }
+
+  .quitBtn:hover{
+      -fx-background-color: #0066ff;
+         -fx-text-fill:  #FFFFFF;
+  }
+
+  .shadow{
+         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1),10.0,0.0,0.0,10.0);
+  }
+
+.item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15;
+}
+
+.imgchoser{
+    -fx-border-colro: #0066ff;
+}
+
+
