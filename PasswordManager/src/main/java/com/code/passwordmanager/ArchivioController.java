@@ -105,7 +105,7 @@ public class ArchivioController implements Initializable {
         grid.getChildren().clear();
 
         int column = 0;
-        int row = 0;
+        int row = 1;
         try {
             for (int i = 0; i < credentials.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -123,7 +123,15 @@ public class ArchivioController implements Initializable {
 
                 grid.add(anchorPane,column++,row);
 
-                GridPane.setMargin(anchorPane, new Insets(0,20,0,5));
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -145,13 +153,30 @@ public class ArchivioController implements Initializable {
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
             if(clickedButton.get() == ButtonType.OK){
-                System.out.println(addPasswordController.getNewCredential().toString());
+
+                Credentials newCredentials = addPasswordController.getNewCredential();
+
+                PreparedStatement statement = null;
+                String sql = "INSERT INTO archivio(nome,nomeUtente,password,url,logo) values (?,?,?,?,?)";
+                statement = DBManager.getConnection().prepareStatement(
+                        sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                statement.setString(1,newCredentials.getNome());
+                statement.setString(2,newCredentials.getNomeUtente());
+                statement.setString(3,newCredentials.getPassword());
+                statement.setString(4, newCredentials.getUrl());
+                statement.setString(5, newCredentials.getLogo());
+                statement.executeQuery();
+
+                newCredentials.setLogo("images/" + newCredentials.getLogo());
+                credentials.add(newCredentials);
+
             }
 
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
 
+        showItem();
     }
 
     @Override

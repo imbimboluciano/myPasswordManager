@@ -34,6 +34,7 @@ public class AddPasswordController {
         newCredential.setNomeUtente(tfNewEmail.getText());
         newCredential.setPassword(tfNewPassword.getText());
         newCredential.setUrl(tfNewUrl.getText());
+        newCredential.setLogo("default_image.png");
         return newCredential;
     }
 }
