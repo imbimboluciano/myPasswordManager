@@ -84,7 +84,18 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="215.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" styleClass="itemButton" stylesheets="@css/style.css" text="Modifica" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" styleClass="itemButton" stylesheets="@css/style.css" text="Modifica">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin></Button>
+                  <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/waste.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
                <VBox.margin>
                   <Insets bottom="5.0" top="20.0" />
