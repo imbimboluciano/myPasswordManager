@@ -115,7 +115,6 @@ public class GeneratoreController implements Initializable {
         });
 
         copy.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            System.out.println("Tile pressed ");
             copyStringToClipboard(tfPassword.getText());
         });
 

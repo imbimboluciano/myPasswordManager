@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -16,14 +17,14 @@
 
 <AnchorPane prefHeight="755.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.code.passwordmanager.GeneratoreController">
    <children>
-      <BorderPane layoutX="158.0" layoutY="73.0" prefHeight="559.0" prefWidth="494.0" style="-fx-background-color: #346efe; -fx-background-radius: 7px;">
+      <BorderPane layoutX="158.0" layoutY="73.0" prefHeight="559.0" prefWidth="494.0" stylesheets="@css/style.css">
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 5px;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </BorderPane.margin>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="487.0" style="-fx-border-color: black;" text="Generatore Password">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="487.0" text="Generatore Password">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -80,9 +81,9 @@
                         <Insets left="90.0" right="50.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="445.0">
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="272.0" style="-fx-border-color: gray;">
                      <children>
-                        <TextField fx:id="tfPassword" prefHeight="25.0" prefWidth="250.0" />
+                        <TextField fx:id="tfPassword" prefHeight="25.0" prefWidth="250.0" styleClass="scroll-pane" stylesheets="@css/style.css" />
                         <ImageView fx:id="copy" fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/copy.png" />
@@ -93,10 +94,10 @@
                         </ImageView>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="100.0" right="100.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#genPassword" prefHeight="34.0" prefWidth="170.0" text="GENERA PASSWORD">
+                  <Button mnemonicParsing="false" onAction="#genPassword" prefHeight="34.0" prefWidth="170.0" styleClass="navigationButton" stylesheets="@css/style.css" text="GENERA PASSWORD">
                      <VBox.margin>
                         <Insets left="140.0" top="15.0" />
                      </VBox.margin>
@@ -104,6 +105,10 @@
                </children>
             </VBox>
          </center>
+         <styleClass>
+            <String fx:value="scroll-pane" />
+            <String fx:value="shadow" />
+         </styleClass>
       </BorderPane>
    </children>
 </AnchorPane>
