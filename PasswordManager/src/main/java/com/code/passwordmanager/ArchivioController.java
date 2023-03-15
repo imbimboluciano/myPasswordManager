@@ -18,10 +18,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ArchivioController implements Initializable {
 
@@ -36,6 +33,7 @@ public class ArchivioController implements Initializable {
 
     private List<Credentials> credentials;
     private ResultSet credentialRemote;
+    private MyListener myListener;
 
     private List<Credentials> getData(){
 
@@ -104,6 +102,9 @@ public class ArchivioController implements Initializable {
     public void showItem(){
         grid.getChildren().clear();
 
+        Collections.sort(credentials);
+
+
         int column = 0;
         int row = 1;
         try {
@@ -114,7 +115,7 @@ public class ArchivioController implements Initializable {
                 anchorPane.setPrefSize(250,250);
 
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(credentials.get(i));
+                itemController.setData(credentials.get(i),myListener);
 
                 if(column == 3){
                     column = 0;
@@ -184,6 +185,27 @@ public class ArchivioController implements Initializable {
 
         credentials = new ArrayList<>();
         credentials.addAll(getData());
+
+        myListener = deleteCredentials -> {
+
+            PreparedStatement statement = null;
+            String sql = "DELETE FROM archivio WHERE nome = ?";
+            try {
+                statement = DBManager.getConnection().prepareStatement(
+                        sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                statement.setString(1,deleteCredentials.getNome());
+                statement.executeQuery();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
+
+            showItem();
+
+        };
+
         showItem();
+
     }
 }
