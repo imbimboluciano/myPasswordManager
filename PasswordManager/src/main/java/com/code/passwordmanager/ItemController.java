@@ -1,15 +1,20 @@
 package com.code.passwordmanager;
 
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -23,16 +28,27 @@ public class ItemController implements Initializable {
     private Label nomeItem;
 
     @FXML
-    private Label nomeUtenteItem;
+    private TextField nomeUtenteItem;
 
     @FXML
-    private Label passwordItem;
+    private TextField passwordItem;
 
     @FXML
-    private Label urlItem;
+    private TextField urlItem;
 
     @FXML
     private ImageView trash;
+
+    @FXML
+    private ImageView copyNome;
+    @FXML
+    private ImageView copyPassword;
+
+    @FXML
+    private ImageView viewPassword;
+
+    @FXML
+    private  ImageView link;
 
     private Credentials credential;
     private MyListener myListener;
@@ -42,7 +58,7 @@ public class ItemController implements Initializable {
         this.credential = credential;
         nomeItem.setText(credential.getNome());
         nomeUtenteItem.setText(credential.getNomeUtente());
-        passwordItem.setText(credential.getPassword());
+        passwordItem.setText("******");
         urlItem.setText(credential.getUrl());
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(credential.getLogo())));
         logoItem.setImage(image);
@@ -59,5 +75,49 @@ public class ItemController implements Initializable {
                 myListener.deleteListener(credential);
             }
         });
+
+
+        copyNome.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                GeneratoreController.copyStringToClipboard(credential.getNomeUtente());
+            }
+        });
+
+
+        copyPassword.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                GeneratoreController.copyStringToClipboard(credential.getPassword());
+            }
+        });
+
+
+        viewPassword.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                passwordItem.setText(credential.getPassword());
+            }
+        });
+
+        viewPassword.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                passwordItem.setText("******");
+            }
+        });
+
+
+        link.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Objects.requireNonNull(getHostServices()).showDocument(credential.getUrl());
+            }
+
+            private HostServices getHostServices() {
+                return null;
+            }
+        });
+
     }
 }

@@ -13,24 +13,35 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.code.passwordmanager.ArchivioController">
    <children>
-      <HBox layoutX="249.0" layoutY="13.0" prefHeight="25.0" prefWidth="320.0" style="-fx-border-color: grey; -fx-border-radius: 15px;">
+      <HBox alignment="CENTER" fillHeight="false" layoutX="-2.0" layoutY="14.0" prefHeight="30.0" prefWidth="850.0">
          <children>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/search.png" />
-               </image>
+            <HBox fillHeight="false" prefHeight="30.0" prefWidth="350.0" style="-fx-border-color: grey; -fx-border-radius: 15px;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/search.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="4.0" top="4.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="tfSearch" alignment="CENTER" onKeyTyped="#searchInDB" onMouseClicked="#initSearch" prefHeight="25.0" prefWidth="300.0" style="-fx-background-radius: 10px;" styleClass="scroll-pane" stylesheets="@css/style.css" text="Search">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </TextField>
+               </children>
                <HBox.margin>
-                  <Insets left="4.0" top="2.0" />
+                  <Insets left="200.0" />
                </HBox.margin>
-            </ImageView>
-            <TextField fx:id="tfSearch" alignment="CENTER" onKeyTyped="#searchInDB" onMouseClicked="#initSearch" prefHeight="25.0" prefWidth="300.0" style="-fx-background-radius: 10px;" styleClass="scroll-pane" stylesheets="@css/style.css" text="Search">
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </TextField>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#addPassword" prefHeight="32.0" prefWidth="180.0" styleClass="navigationButton" stylesheets="@css/style.css" text="Aggiungi Password +">
+               <HBox.margin>
+                  <Insets left="70.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
-      <Button layoutX="663.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPassword" prefHeight="25.0" prefWidth="160.0" styleClass="navigationButton" stylesheets="@css/style.css" text="Aggiungi Password +" />
       <HBox alignment="CENTER" layoutX="10.0" layoutY="186.0" prefHeight="600.0" prefWidth="825.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0">
          <children>
             <ScrollPane fx:id="scroll" hbarPolicy="NEVER" pannable="true" prefHeight="600.0" prefWidth="837.0" stylesheets="@css/style.css" vbarPolicy="NEVER">

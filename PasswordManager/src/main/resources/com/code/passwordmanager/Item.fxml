@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,46 +43,80 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="nomeUtenteItem" nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="220.0" stylesheets="@css/style.css" text="nome">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="nomeUtenteItem" editable="false" prefHeight="26.0" prefWidth="200.0" styleClass="scroll-pane" stylesheets="@css/style.css" />
+                  <ImageView fx:id="copyNome" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/copy.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </HBox>
             <Label prefHeight="17.0" prefWidth="120.0" text="Password">
                <font>
                   <Font size="10.0" />
                </font>
                <VBox.margin>
-                  <Insets right="97.0" top="3.0" />
+                  <Insets right="100.0" top="3.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="passwordItem" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="220.0" text="*******">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="passwordItem" editable="false" prefHeight="26.0" prefWidth="176.0" styleClass="scroll-pane" stylesheets="@css/style.css">
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fx:id="viewPassword" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/eye.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="copyPassword" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/copy.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
             <Label prefHeight="17.0" prefWidth="90.0" text="Url">
                <font>
                   <Font size="10.0" />
                </font>
                <VBox.margin>
-                  <Insets right="120.0" />
+                  <Insets right="130.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="urlItem" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="220.0" text="https">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="urlItem" editable="false" prefHeight="26.0" prefWidth="194.0" styleClass="scroll-pane" stylesheets="@css/style.css">
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fx:id="link" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/external_link.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="215.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" styleClass="itemButton" stylesheets="@css/style.css" text="Modifica">

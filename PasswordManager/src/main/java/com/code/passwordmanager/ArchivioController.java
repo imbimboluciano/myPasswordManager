@@ -188,20 +188,44 @@ public class ArchivioController implements Initializable {
 
         myListener = deleteCredentials -> {
 
-            PreparedStatement statement = null;
-            String sql = "DELETE FROM archivio WHERE nome = ?";
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("DeletePassword.fxml"));
+            DialogPane dialogPane = null;
             try {
-                statement = DBManager.getConnection().prepareStatement(
-                        sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                statement.setString(1,deleteCredentials.getNome());
-                statement.executeQuery();
-            } catch (SQLException e) {
+                dialogPane = fxmlLoader.load();
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
-            credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
+            DeletePasswordController deletePasswordController = fxmlLoader.getController();
 
-            showItem();
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("Rimuovere Password");
+
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.get() == ButtonType.OK) {
+                PreparedStatement statement = null;
+                String sql = "DELETE FROM archivio WHERE nome = ?";
+                try {
+                    statement = DBManager.getConnection().prepareStatement(
+                            sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                    statement.setString(1,deleteCredentials.getNome());
+                    statement.executeQuery();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
+
+                showItem();
+            }
+
+
+
+
 
         };
 
