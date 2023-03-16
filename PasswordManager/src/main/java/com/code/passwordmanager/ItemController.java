@@ -1,5 +1,6 @@
 package com.code.passwordmanager;
 
+import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ItemController implements Initializable {
+public class ItemController implements Initializable{
 
     @FXML
     private ImageView logoItem;
@@ -52,6 +53,7 @@ public class ItemController implements Initializable {
 
     private Credentials credential;
     private MyListener myListener;
+
 
     public void setData(Credentials credential,MyListener myListener){
         this.myListener = myListener;
@@ -111,13 +113,10 @@ public class ItemController implements Initializable {
         link.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Objects.requireNonNull(getHostServices()).showDocument(credential.getUrl());
-            }
-
-            private HostServices getHostServices() {
-                return null;
+                Main.getHost().showDocument(credential.getUrl());
             }
         });
 
     }
+
 }
