@@ -90,10 +90,15 @@ public class ItemController implements Initializable{
                 if(!modifica){
                     nomeUtenteItem.setEditable(true);
                     passwordItem.setEditable(true);
+                    passwordItem.setText("");
                     urlItem.setEditable(true);
                     modifica = true;
                 }else{
 
+
+                    nomeUtenteItem.setEditable(false);
+                    passwordItem.setEditable(false);
+                    urlItem.setEditable(false);
 
                     credential.setNomeUtente(nomeUtenteItem.getText());
                     try {
@@ -110,6 +115,7 @@ public class ItemController implements Initializable{
                     }
 
                     myListener.updateListener(credential);
+                    modifica = false;
                 }
             }
         });

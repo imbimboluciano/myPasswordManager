@@ -230,14 +230,16 @@ public class ArchivioController implements Initializable {
             public void updateListener(Credentials updateCredentials) {
 
                 PreparedStatement statement = null;
-                String sql = "INSERT INTO archivio(nomeUtente,password,url) values (?,?,?)";
+                String sql = " UPDATE archivio SET nomeUtente = ?, password = ?, url = ? WHERE nome = ?";
                 try {
                     statement = DBManager.getConnection().prepareStatement(
                             sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
-                    statement.setString(1,updateCredentials.getNome());
-                    statement.setString(2,updateCredentials.getNomeUtente());
-                    statement.setString(3,updateCredentials.getPassword());
+                    statement.setString(1,updateCredentials.getNomeUtente());
+                    statement.setString(2,updateCredentials.getPassword());
+                    statement.setString(3,updateCredentials.getUrl());
+                    statement.setString(4,updateCredentials.getNome());
+                    statement.executeQuery();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
