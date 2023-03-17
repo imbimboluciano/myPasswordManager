@@ -136,11 +136,8 @@ public class ItemController implements Initializable{
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    credential.setPassword(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
 
-                    GeneratoreController.copyStringToClipboard(credential.getPassword());
-
-                    credential.setPassword(credential.encryptPassword(credential.getPassword(), credential.generateKey()));
+                    GeneratoreController.copyStringToClipboard(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -155,9 +152,7 @@ public class ItemController implements Initializable{
             public void handle(MouseEvent event) {
 
                 try {
-                    credential.setPassword(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
-
-                    passwordItem.setText(credential.getPassword());
+                    passwordItem.setText(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -171,11 +166,6 @@ public class ItemController implements Initializable{
         viewPassword.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    credential.setPassword(credential.encryptPassword(credential.getPassword(), credential.generateKey()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
                 passwordItem.setText("******");
             }
         });
