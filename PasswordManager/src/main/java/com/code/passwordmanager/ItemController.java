@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -51,6 +52,11 @@ public class ItemController implements Initializable{
     @FXML
     private  ImageView link;
 
+    private boolean modifica = false;
+
+    @FXML
+    private Button btModifica;
+
     private Credentials credential;
     private MyListener myListener;
 
@@ -78,6 +84,39 @@ public class ItemController implements Initializable{
             }
         });
 
+        btModifica.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(!modifica){
+                    nomeUtenteItem.setEditable(true);
+                    passwordItem.setEditable(true);
+                    urlItem.setEditable(true);
+                    modifica = true;
+                }else{
+
+
+                    credential.setNomeUtente(nomeUtenteItem.getText());
+                    try {
+                        credential.setPassword(credential.encryptPassword(passwordItem.getText(), credential.generateKey()));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    credential.setUrl(urlItem.getText());
+
+                    try {
+                        credential.checkParameters();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    myListener.updateListener(credential);
+                }
+            }
+        });
+
+
+
+
 
         copyNome.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -90,7 +129,17 @@ public class ItemController implements Initializable{
         copyPassword.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GeneratoreController.copyStringToClipboard(credential.getPassword());
+                try {
+                    credential.setPassword(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
+
+                    GeneratoreController.copyStringToClipboard(credential.getPassword());
+
+                    credential.setPassword(credential.encryptPassword(credential.getPassword(), credential.generateKey()));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+
             }
         });
 
@@ -98,13 +147,29 @@ public class ItemController implements Initializable{
         viewPassword.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                passwordItem.setText(credential.getPassword());
+
+                try {
+                    credential.setPassword(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
+
+                    passwordItem.setText(credential.getPassword());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+
+
+
             }
         });
 
         viewPassword.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                try {
+                    credential.setPassword(credential.encryptPassword(credential.getPassword(), credential.generateKey()));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 passwordItem.setText("******");
             }
         });

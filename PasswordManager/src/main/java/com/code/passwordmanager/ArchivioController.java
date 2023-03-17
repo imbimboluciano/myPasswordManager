@@ -76,7 +76,7 @@ public class ArchivioController implements Initializable {
             String sql = "SELECT * FROM archivio WHERE nome LIKE ?";
             statement = DBManager.getConnection().prepareStatement(
                     sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            statement.setString(1,tfSearch.getText() + "%");
+            statement.setString(1,"%" + tfSearch.getText() + "%");
             credentialRemote = statement.executeQuery();
 
             credentials = new ArrayList<>();
@@ -174,7 +174,7 @@ public class ArchivioController implements Initializable {
 
             }
 
-        } catch (IOException | SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -187,48 +187,68 @@ public class ArchivioController implements Initializable {
         credentials = new ArrayList<>();
         credentials.addAll(getData());
 
-        myListener = deleteCredentials -> {
+
+        myListener = new MyListener() {
+            @Override
+            public void deleteListener(Credentials deleteCredentials) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("DeletePassword.fxml"));
+                DialogPane dialogPane = null;
+                try {
+                    dialogPane = fxmlLoader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                DeletePasswordController deletePasswordController = fxmlLoader.getController();
 
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("DeletePassword.fxml"));
-            DialogPane dialogPane = null;
-            try {
-                dialogPane = fxmlLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(dialogPane);
+                dialog.setTitle("Rimuovere Password");
+
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if(clickedButton.get() == ButtonType.OK) {
+                    PreparedStatement statement = null;
+                    String sql = "DELETE FROM archivio WHERE nome = ?";
+                    try {
+                        statement = DBManager.getConnection().prepareStatement(
+                                sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                        statement.setString(1,deleteCredentials.getNome());
+                        statement.executeQuery();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
+
+                    showItem();
+                }
             }
 
-            DeletePasswordController deletePasswordController = fxmlLoader.getController();
+            @Override
+            public void updateListener(Credentials updateCredentials) {
 
-
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(dialogPane);
-            dialog.setTitle("Rimuovere Password");
-
-            Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.get() == ButtonType.OK) {
                 PreparedStatement statement = null;
-                String sql = "DELETE FROM archivio WHERE nome = ?";
+                String sql = "INSERT INTO archivio(nomeUtente,password,url) values (?,?,?)";
                 try {
                     statement = DBManager.getConnection().prepareStatement(
                             sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                    statement.setString(1,deleteCredentials.getNome());
-                    statement.executeQuery();
+
+                    statement.setString(1,updateCredentials.getNome());
+                    statement.setString(2,updateCredentials.getNomeUtente());
+                    statement.setString(3,updateCredentials.getPassword());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
 
-                credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
-
                 showItem();
+
+
             }
-
-
-
-
-
         };
+
+
 
         showItem();
 

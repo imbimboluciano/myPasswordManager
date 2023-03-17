@@ -1,5 +1,11 @@
 package com.code.passwordmanager;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Objects;
 
 public class Credentials implements Comparable<Credentials>{
@@ -80,4 +86,46 @@ public class Credentials implements Comparable<Credentials>{
     public int hashCode() {
         return Objects.hash(nome, nomeUtente, password, logo, url);
     }
+
+
+
+    public String encryptPassword(String valueToEnc, Key key) throws Exception {
+
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+
+        byte[] encValue = cipher.doFinal(valueToEnc.getBytes());
+        byte[] encryptedByteValue = Base64.getEncoder().encode(encValue);
+        return new String(encryptedByteValue);
+    }
+
+    public String decryptPassword(String encryptedValue, Key key) throws Exception {
+        // Key key = generateKey();
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, key);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(encryptedValue.getBytes());
+
+        byte[] enctVal = cipher.doFinal(decodedBytes);
+        return new String(enctVal);
+    }
+
+
+
+
+    public Key generateKey() throws Exception {
+        final byte[] keyValue = "1234567891234567".getBytes();
+        Key key = new SecretKeySpec(keyValue, "AES");
+        return key;
+    }
+
+
+    public void checkParameters() throws Exception{
+
+        if(nome.isBlank() || nomeUtente.isBlank() || password.isBlank() || url.isBlank()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

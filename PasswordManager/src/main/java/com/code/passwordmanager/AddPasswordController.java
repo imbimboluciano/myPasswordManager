@@ -29,7 +29,7 @@ public class AddPasswordController {
 
     }
 
-    public Credentials getNewCredential(){
+    public Credentials getNewCredential() throws Exception {
 
         newCredential = new Credentials();
         newCredential.setNome(tfNewName.getText());
@@ -37,6 +37,14 @@ public class AddPasswordController {
         newCredential.setPassword(tfNewPassword.getText());
         newCredential.setUrl(tfNewUrl.getText());
         newCredential.setLogo("default_image.png");
+
+        newCredential.checkParameters();
+
+        try {
+            newCredential.setPassword(newCredential.encryptPassword(newCredential.getPassword(), newCredential.generateKey()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return newCredential;
     }
 }
