@@ -6,7 +6,7 @@
    -fx-background-color: transparent;
 }
 .itemButton{
-    -fx-background-color: #346efe;
+     -fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
     -fx-text-fill:  #FFFFFF;
     -fx-font-size: 1.1em;
     -fx-alignment: center;
@@ -16,7 +16,7 @@
 
 
 .navigationButton{
-     -fx-background-color: #346efe;
+      -fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
      -fx-text-fill:  #FFFFFF;
       -fx-font-size: 1.1em;
       -fx-alignment: center;
@@ -55,7 +55,23 @@
 }
 
 .imgchoser{
-    -fx-border-colro: #0066ff;
+    -fx-border-colo: #0066ff;
+}
+.colored_card{
+    -fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
+    -fx-background-radius: 10px;
 }
 
+
+.default-color0.chart-pie { -fx-pie-color: #33cc00; }
+.default-color1.chart-pie { -fx-pie-color: #ff471a; }
+.default-color2.chart-pie { -fx-pie-color: #33cc00; }
+.default-color3.chart-pie { -fx-pie-color: #ff471a; }
+
+
+.search{
+-fx-border-color: linear-gradient(to right,#346efe, #0099ff);
+-fx-border-width:2px;
+color:  #e6e6e6;
+}
 

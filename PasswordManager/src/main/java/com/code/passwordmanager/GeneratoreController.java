@@ -47,12 +47,7 @@ public class GeneratoreController implements Initializable {
 
     private final String number = "1234567890";
 
-    public static void copyStringToClipboard(String str){
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        ClipboardContent content = new ClipboardContent();
-        content.putString(str);
-        clipboard.setContent(content);
-    }
+
     public void updateLabel(){
         lLunghezza.setText(String.valueOf(sLunghezza.getValue()));
     }
@@ -115,7 +110,7 @@ public class GeneratoreController implements Initializable {
         });
 
         copy.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            copyStringToClipboard(tfPassword.getText());
+            Util.copyStringToClipboard(tfPassword.getText());
         });
 
         genPassword();

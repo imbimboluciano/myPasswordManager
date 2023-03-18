@@ -1,12 +1,14 @@
 package com.code.passwordmanager;
 
 import javafx.application.HostServices;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -31,6 +33,17 @@ public class ArchivioController implements Initializable {
 
     @FXML
     private TextField tfSearch;
+
+    @FXML
+    private PieChart pieChart;
+
+    @FXML
+    private Label labelPasswordS;
+    @FXML
+    private Label labelPasswordNS;
+    @FXML
+    private Label labelStateSecurity;
+
 
     private List<Credentials> credentials;
     private ResultSet credentialRemote;
@@ -138,6 +151,7 @@ public class ArchivioController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public void addPassword(){
@@ -179,6 +193,7 @@ public class ArchivioController implements Initializable {
         }
 
         showItem();
+        showPieChart();
     }
 
     @Override
@@ -186,6 +201,9 @@ public class ArchivioController implements Initializable {
 
         credentials = new ArrayList<>();
         credentials.addAll(getData());
+        showPieChart();
+
+
 
 
         myListener = new MyListener() {
@@ -223,6 +241,7 @@ public class ArchivioController implements Initializable {
                     credentials.removeIf(credentials1 -> credentials1.equals(deleteCredentials));
 
                     showItem();
+                    showPieChart();
                 }
             }
 
@@ -245,6 +264,7 @@ public class ArchivioController implements Initializable {
                 }
 
                 showItem();
+                showPieChart();
 
 
             }
@@ -253,6 +273,48 @@ public class ArchivioController implements Initializable {
 
 
         showItem();
+
+    }
+
+
+    private void showPieChart(){
+
+        int numberSecurePassword = 0;
+
+        for (Credentials tmp:
+             credentials) {
+            try {
+                if(Util.checkSecurePassword(tmp.decryptPassword(tmp.getPassword(), tmp.generateKey()))){
+                    numberSecurePassword++;
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        labelPasswordNS.setText(String.valueOf(credentials.size() - numberSecurePassword));
+        labelPasswordS.setText(String.valueOf(numberSecurePassword));
+
+        labelStateSecurity.setText(setStateSecurity(numberSecurePassword, credentials.size() - numberSecurePassword));
+
+        pieChart.getData().clear();
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Password sicure",numberSecurePassword),
+                new PieChart.Data("Password non sicure", credentials.size() - numberSecurePassword)
+        );
+        pieChart.setData(pieChartData);
+    }
+
+    private String setStateSecurity(int securePassword, int nonSecurePassword){
+
+        if(nonSecurePassword == 0){
+            return "Tutte le password sono sicure";
+        }else if(securePassword > nonSecurePassword){
+            return "Problemi! Ci sono alcune password non sicure";
+        }else {
+            return "Problemi! Problemi! Problemi!";
+        }
+
 
     }
 }

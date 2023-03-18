@@ -127,7 +127,7 @@ public class ItemController implements Initializable{
         copyNome.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GeneratoreController.copyStringToClipboard(credential.getNomeUtente());
+                Util.copyStringToClipboard(credential.getNomeUtente());
             }
         });
 
@@ -137,7 +137,7 @@ public class ItemController implements Initializable{
             public void handle(MouseEvent event) {
                 try {
 
-                    GeneratoreController.copyStringToClipboard(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
+                    Util.copyStringToClipboard(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
