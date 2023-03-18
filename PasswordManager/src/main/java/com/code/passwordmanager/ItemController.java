@@ -77,6 +77,20 @@ public class ItemController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        trash.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                trash.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/deletehover.png"))));
+            }
+        });
+
+        trash.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                trash.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/delete.png"))));
+            }
+        });
         trash.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

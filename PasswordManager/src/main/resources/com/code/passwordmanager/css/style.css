@@ -54,9 +54,11 @@
     -fx-background-radius: 15;
 }
 
-.imgchoser{
-    -fx-border-colo: #0066ff;
+.imgchooser:hover{
+    -fx-border-color: linear-gradient(to right,#346efe, #0099ff);
 }
+
+
 .colored_card{
     -fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
     -fx-background-radius: 10px;

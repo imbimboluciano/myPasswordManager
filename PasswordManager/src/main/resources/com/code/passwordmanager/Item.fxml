@@ -123,12 +123,12 @@
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin></Button>
-                  <ImageView fx:id="trash" fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="trash" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/waste.png" />
+                        <Image url="@images/delete.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets left="25.0" />
                      </HBox.margin>
                   </ImageView>
                </children>
