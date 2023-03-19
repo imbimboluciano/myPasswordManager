@@ -74,6 +74,12 @@
 .search{
 -fx-border-color: linear-gradient(to right,#346efe, #0099ff);
 -fx-border-width:2px;
-color:  #e6e6e6;
 }
+
+
+.modified{
+    -fx-border-color: linear-gradient(to right,#346efe, #0099ff);
+}
+
+
 

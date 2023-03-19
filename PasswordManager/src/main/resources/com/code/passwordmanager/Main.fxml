@@ -35,7 +35,7 @@
                         <Insets left="40.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="quitBtn" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="120.0" styleClass="quitBtn" stylesheets="@css/style.css" text="ESCI">
+                  <Button mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="120.0" styleClass="quitBtn" stylesheets="@css/style.css" text="ESCI">
                      <VBox.margin>
                         <Insets left="40.0" top="410.0" />
                      </VBox.margin>

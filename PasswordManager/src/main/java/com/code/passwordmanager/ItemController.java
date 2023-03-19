@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -56,6 +57,13 @@ public class ItemController implements Initializable{
 
     @FXML
     private Button btModifica;
+
+    @FXML
+    private HBox hbNomeUtente;
+    @FXML
+    private HBox hbPassword;
+    @FXML
+    private HBox hbUrl;
 
     private Credentials credential;
     private MyListener myListener;
@@ -102,9 +110,18 @@ public class ItemController implements Initializable{
             @Override
             public void handle(MouseEvent event) {
                 if(!modifica){
+                    btModifica.setStyle(" -fx-background-color: linear-gradient(to bottom,#009900, #00e600);");
+                    btModifica.setText("Conferma");
+                    hbNomeUtente.setStyle("-fx-border-color: linear-gradient(to right,#346efe, #0099ff); -fx-border-radius:10px");
+                    hbPassword.setStyle("-fx-border-color: linear-gradient(to right,#346efe, #0099ff); -fx-border-radius:10px ");
+                    hbUrl.setStyle("-fx-border-color: linear-gradient(to right,#346efe, #0099ff); -fx-border-radius:10px");
                     nomeUtenteItem.setEditable(true);
                     passwordItem.setEditable(true);
-                    passwordItem.setText("");
+                    try {
+                        passwordItem.setText(credential.decryptPassword(credential.getPassword(), credential.generateKey()));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     urlItem.setEditable(true);
                     modifica = true;
                 }else{
