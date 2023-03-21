@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 
 import java.net.URL;
@@ -54,49 +55,12 @@ public class GeneratoreController implements Initializable {
 
     public void genPassword(){
 
-        String password = generateSecurePassword();
+        String password = Util.generateSecurePassword((int) sLunghezza.getValue(), cbMaiuscole.isSelected(),cbNumeri.isSelected(),cbSimboli.isSelected());
         tfPassword.setText(password);
     }
 
 
-    public String generateSecurePassword() {
 
-        int lunghezza = (int) sLunghezza.getValue();
-        StringBuilder password = new StringBuilder();
-
-
-        while (password.length() != lunghezza){
-            int rand = (int)(4 * Math.random());
-
-            switch (rand){
-                case 0:
-                    rand = (int)(lowerCase.length() * Math.random());
-                    password.append(String.valueOf(lowerCase.charAt(rand)));
-                    break;
-                case 1:
-                    if(cbMaiuscole.isSelected()) {
-                        rand = (int) (upperCase.length() * Math.random());
-                        password.append(String.valueOf(upperCase.charAt(rand)));
-                    }
-                    break;
-                case 2:
-                    if(cbNumeri.isSelected()) {
-                        rand = (int) (number.length() * Math.random());
-                        password.append(String.valueOf(number.charAt(rand)));
-                    }
-                    break;
-                case 3:
-                    if(cbSimboli.isSelected()) {
-                        rand = (int) (special.length() * Math.random());
-                        password.append(String.valueOf(special.charAt(rand)));
-                    }
-                    break;
-            }
-
-        }
-
-        return password.toString();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -104,6 +68,13 @@ public class GeneratoreController implements Initializable {
         sLunghezza.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if((int) sLunghezza.getValue() < 8){
+                    String css = "-fx-text-fill: #ff471a";
+                    lLunghezza.setStyle(css);
+                }else{
+                    String css = "-fx-text-fill: #009900";
+                    lLunghezza.setStyle(css);
+                }
 
                 lLunghezza.setText(String.valueOf((int)sLunghezza.getValue()));
             }

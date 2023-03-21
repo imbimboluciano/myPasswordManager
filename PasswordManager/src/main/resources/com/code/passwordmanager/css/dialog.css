@@ -1,8 +1,16 @@
-.button {
--fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
- -fx-text-fill:  #FFFFFF;
+.dialogpane .button {
+        -fx-background-color: linear-gradient(to bottom,#346efe, #0099ff);
+      -fx-text-fill:  #FFFFFF;
      -fx-font-size: 1.1em;
      -fx-alignment: center;
      -fx-font-family: Arial, Helvetica, sans-serif;
      -fx-font-weight: bold;
  }
+
+
+ .dialogpane .button:hover {
+        -fx-cursor: hand;
+        -fx-background-color: #002699;
+  }
+
+

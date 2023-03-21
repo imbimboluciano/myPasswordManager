@@ -13,6 +13,11 @@
     -fx-font-family: Arial, Helvetica, sans-serif;
     -fx-font-weight: bold;
 }
+.itemButton:hover{
+     -fx-cursor: hand;
+      -fx-background-color: #002699;
+}
+
 
 
 .navigationButton{
@@ -46,16 +51,12 @@
   }
 
   .shadow{
-         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1),10.0,0.0,0.0,10.0);
+         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3),10.0,0.0,0.0,1.0);
   }
 
 .item{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 15;
-}
-
-.imgchooser:hover{
-    -fx-border-color: linear-gradient(to right,#346efe, #0099ff);
 }
 
 
@@ -77,9 +78,6 @@
 }
 
 
-.modified{
-    -fx-border-color: linear-gradient(to right,#346efe, #0099ff);
-}
 
 
 
