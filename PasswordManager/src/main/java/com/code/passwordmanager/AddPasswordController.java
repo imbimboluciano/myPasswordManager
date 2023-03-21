@@ -62,13 +62,32 @@ public class AddPasswordController implements Initializable {
                 imgChooser.setImage(image);
                 imgChooser.setFitWidth(200);
                 imgChooser.setFitHeight(80);
-                Path source = Paths.get(selectedFile.getAbsolutePath());
-                Path targetDir = Paths.get("C:\\Users\\lucia\\IdeaProjects\\MyNewPasswordManager\\PasswordManager\\src\\main\\resources\\com\\code\\passwordmanager\\images\\");
+
+
+
+                File copied = new File("PasswordManager/src/main/resources/com/code/passwordmanager/images/" + selectedFile.getName());
+                try (
+                        InputStream in = new BufferedInputStream(
+                                new FileInputStream(selectedFile));
+                        OutputStream out = new BufferedOutputStream(
+                                new FileOutputStream(copied))) {
+
+                    byte[] buffer = new byte[1024];
+                    int lengthRead;
+                    while ((lengthRead = in.read(buffer)) > 0) {
+                        out.write(buffer, 0, lengthRead);
+                        out.flush();
+                    }
+                }
+
+                 /*Path source = Paths.get(selectedFile.getAbsolutePath());
+
+                Path targetDir = Paths.get("PasswordManager/src/main/resources/com/code/passwordmanager/images/");
 
                 Files.createDirectories(targetDir);
                 Path target = targetDir.resolve(selectedFile.getName());
                 System.out.println("copying into " + target);
-                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);*/
 
                 logo = selectedFile.getName();
 
