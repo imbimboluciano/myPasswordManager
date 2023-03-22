@@ -80,15 +80,6 @@ public class AddPasswordController implements Initializable {
                     }
                 }
 
-                 /*Path source = Paths.get(selectedFile.getAbsolutePath());
-
-                Path targetDir = Paths.get("PasswordManager/src/main/resources/com/code/passwordmanager/images/");
-
-                Files.createDirectories(targetDir);
-                Path target = targetDir.resolve(selectedFile.getName());
-                System.out.println("copying into " + target);
-                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);*/
-
                 logo = selectedFile.getName();
 
 
